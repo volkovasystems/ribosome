@@ -1,0 +1,29 @@
+{
+  "name": "ribosome",
+  "version": "0.0.0",
+  "description": "Function factory.",
+  "main": "ribosome.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volkovasystems/ribosome.git"
+  },
+  "keywords": [
+    "function",
+    "factory",
+    "ribosome"
+  ],
+  "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/volkovasystems/ribosome/issues"
+  },
+  "homepage": "https://github.com/volkovasystems/ribosome#readme",
+  "dependencies": {
+    "asea": "0.0.3",
+    "excursio": "0.0.7",
+    "komento": "^0.2.4"
+  }
+}
