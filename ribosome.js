@@ -42,19 +42,23 @@
 	@end-module-configuration
 
 	@module-documentation:
+		Function factory.
 	@end-module-documentation
-
-	@example:
-	@end-example
 
 	@include:
 		{
+			"asea": "asea",
+			"doubt": "doubt",
+			"fs": "fs",
+			"excursio": "excursio",
+			"komento": "komento"
 		}
 	@end-include
 */
 
 if( typeof window == "undefined" ){
 	var asea = require( "asea" );
+	var doubt = require( "doubt" );
 	var fs = require( "fs" );
 	var excursio = require( "excursio" );
 	var komento = require( "komento" );
@@ -64,6 +68,12 @@ if( typeof window != "undefined" &&
 	!( "asea" in window ) )
 {
 	throw new Error( "asea is not defined" );
+}
+
+if( asea.client &&
+	!( "doubt" in window ) )
+{
+	throw new Error( "doubt is not defined" );
 }
 
 if( asea.client &&
@@ -105,30 +115,29 @@ var ribosome = function ribosome( expression, option ){
 	}
 
 	var parameter = option.parameter || [ ];
-	if( !Array.isArray( parameter ) ){
+	if( !doubt( parameter ).ARRAY ){
 		throw new Error( "invalid parameter" );
 	}
 
 	expression = komento( expression, option.data );
 
 	var dependency = option.dependency || [ ];
-	dependency = dependency.map( function onEachDependency( _dependency ){
+	dependency = dependency.map( function onEachDependency( need ){
 		if( asea.client ){
-			if( typeof window[ _dependency ] == "undefined" ||
-				window[ _dependency ] === null )
-			{
-				throw new Error( [ "dependency", _dependency,
-					"not defined" ].join( " " ) );
+			if( typeof window[ need ] == "undefined" || window[ need ] === null ){
+				var error = `dependency ${ need } not defined`;
+
+				throw new Error( error );
 			}
 
-			return [ _dependency, ";" ].join( "" );
+			return `${ need };`;
 
 		}else if( asea.server ){
 			try{
-				var name = _dependency.split( "@" )[ 0 ];
-				var _path = _dependency.split( "@" )[ 1 ];
+				var name = need.split( "@" )[ 0 ];
+				var track = need.split( "@" )[ 1 ];
 
-				fs.accessSync( _path );
+				fs.accessSync( track );
 
 				return komento( function template( ){
 					/*!
@@ -145,13 +154,14 @@ var ribosome = function ribosome( expression, option ){
 						} )( );
 					*/
 				}, {
-					"module": fs.readFileSync( _path, "utf8" ),
+					"module": fs.readFileSync( track, "utf8" ),
 					"name": name
 				} );
 
 			}catch( error ){
-				throw new Error( [ "dependency file", _dependency,
-					"does not exists" ].join( " " ) );
+				error = `dependency file ${ need } does not exists, ${ error.message }`;
+
+				throw new Error( error );
 			}
 		}
 	} ).join( "\n" );
@@ -177,7 +187,9 @@ var ribosome = function ribosome( expression, option ){
 		return method;
 
 	}catch( error ){
-		throw new Error( "error encountered constructing function " + error.message );
+		error = `error encountered constructing function, ${ error.message }`;
+
+		throw new Error( error );
 	}
 };
 

@@ -1,5 +1,6 @@
 {
   "name": "ribosome",
+  "version": "0.0.1",
   "description": "Function factory.",
   "main": "ribosome.js",
   "authors": [
@@ -20,8 +21,9 @@
     "tests"
   ],
   "dependencies": {
-    "komento": "^0.2.4",
-    "asea": "^0.0.3",
-    "excursio": "^0.0.7"
+    "asea": "^0.1.2",
+    "excursio": "^0.0.8",
+    "komento": "^0.2.5",
+    "doubt": "^0.0.4"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "ribosome",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Function factory.",
   "main": "ribosome.js",
   "scripts": {
@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/volkovasystems/ribosome#readme",
   "dependencies": {
-    "asea": "0.0.3",
-    "excursio": "0.0.7",
-    "komento": "^0.2.4"
+    "asea": "^0.1.2",
+    "doubt": "0.0.4",
+    "excursio": "0.0.8",
+    "komento": "^0.2.5"
   }
 }
