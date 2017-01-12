@@ -1,10 +1,11 @@
 {
   "name": "ribosome",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Function factory.",
   "main": "ribosome.js",
   "authors": [
-    "Richeve S. Bebedor <richeve.bebedor@gmail.com>"
+    "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+    "John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
@@ -21,9 +22,10 @@
     "tests"
   ],
   "dependencies": {
-    "asea": "^0.1.2",
-    "excursio": "^0.0.8",
-    "komento": "^0.2.5",
-    "doubt": "^0.0.4"
+    "asea": "^0.6.0",
+    "doubt": "^0.6.0",
+    "excursio": "^0.1.0",
+    "komento": "^0.9.0",
+    "protype": "^0.8.0"
   }
 }
