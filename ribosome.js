@@ -5,7 +5,7 @@
 		The MIT License (MIT)
 		@mit-license
 
-		Copyright (@c) 2016 Richeve Siodina Bebedor
+		Copyright (@c) 2017 Richeve Siodina Bebedor
 		@email: richeve.bebedor@gmail.com
 
 		Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,9 @@
 			"file": "ribosome.js",
 			"module": "ribosome",
 			"author": "Richeve S. Bebedor",
+			"contributors": [
+				"John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+			],
 			"eMail": "richeve.bebedor@gmail.com",
 			"repository": "https://github.com/volkovasystems/ribosome.git",
 			"test": "ribosome-test.js",
@@ -56,37 +59,11 @@
 	@end-include
 */
 
-if( typeof window == "undefined" ){
-	var asea = require( "asea" );
-	var doubt = require( "doubt" );
-	var fs = require( "fs" );
-	var excursio = require( "excursio" );
-	var komento = require( "komento" );
-}
-
-if( typeof window != "undefined" &&
-	!( "asea" in window ) )
-{
-	throw new Error( "asea is not defined" );
-}
-
-if( asea.client &&
-	!( "doubt" in window ) )
-{
-	throw new Error( "doubt is not defined" );
-}
-
-if( asea.client &&
-	!( "excursio" in window ) )
-{
-	throw new Error( "excursio is not defined" );
-}
-
-if( asea.client &&
-	!( "komento" in window ) )
-{
-	throw new Error( "komento is not defined" );
-}
+const asea = require( "asea" );
+const doubt = require( "doubt" );
+const fs = require( "fs" );
+const excursio = require( "excursio" );
+const komento = require( "komento" );
 
 /*;
 	@option:
@@ -98,7 +75,7 @@ if( asea.client &&
 		}
 	@end-option
 */
-var ribosome = function ribosome( expression, option ){
+const ribosome = function ribosome( expression, option ){
 	/*;
 		@meta-configuration:
 			{
@@ -108,24 +85,24 @@ var ribosome = function ribosome( expression, option ){
 		@end-meta-configuration
 	*/
 
-	var name = option.name || "method";
+	let name = option.name || "method";
 
-	if( typeof expression != "function" ){
+	if( !protype( expression, FUNCTION ) ){
 		throw new Error( "invalid expression" );
 	}
 
-	var parameter = option.parameter || [ ];
+	let parameter = option.parameter || [ ];
 	if( !doubt( parameter ).ARRAY ){
 		throw new Error( "invalid parameter" );
 	}
 
 	expression = komento( expression, option.data );
 
-	var dependency = option.dependency || [ ];
+	let dependency = option.dependency || [ ];
 	dependency = dependency.map( function onEachDependency( need ){
 		if( asea.client ){
-			if( typeof window[ need ] == "undefined" || window[ need ] === null ){
-				var error = `dependency ${ need } not defined`;
+			if( !protype( window[ need ], UNDEFINED ) || window[ need ] === null ){
+				let error = `dependency ${ need } not defined`;
 
 				throw new Error( error );
 			}
@@ -134,8 +111,8 @@ var ribosome = function ribosome( expression, option ){
 
 		}else if( asea.server ){
 			try{
-				var name = need.split( "@" )[ 0 ];
-				var track = need.split( "@" )[ 1 ];
+				let name = need.split( "@" )[ 0 ];
+				let track = need.split( "@" )[ 1 ];
 
 				fs.accessSync( track );
 
@@ -182,7 +159,7 @@ var ribosome = function ribosome( expression, option ){
 			"expression": expression
 		} );
 
-		var method = excursio( expression );
+		let method = excursio( expression );
 
 		return method;
 
@@ -193,6 +170,4 @@ var ribosome = function ribosome( expression, option ){
 	}
 };
 
-if( asea.server ){
-	module.exports = ribosome;
-}
+module.exports = ribosome;
