@@ -54,7 +54,8 @@
 			"doubt": "doubt",
 			"fs": "fs",
 			"excursio": "excursio",
-			"komento": "komento"
+			"komento": "komento",
+			"protype": "protype"
 		}
 	@end-include
 */
@@ -64,6 +65,7 @@ const doubt = require( "doubt" );
 const fs = require( "fs" );
 const excursio = require( "excursio" );
 const komento = require( "komento" );
+const protype = require( "protype" );
 
 /*;
 	@option:
