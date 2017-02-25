@@ -52,20 +52,28 @@
 		{
 			"asea": "asea",
 			"doubt": "doubt",
-			"fs": "fs",
 			"excursio": "excursio",
 			"komento": "komento",
-			"protype": "protype"
+			"lire": "lire",
+			"protype": "protype",
+			"wichevr": "wichevr",
+			"wichis": "wichis"
 		}
 	@end-include
 */
 
 const asea = require( "asea" );
 const doubt = require( "doubt" );
-const fs = require( "fs" );
 const excursio = require( "excursio" );
+const falzy = require( "falzy" );
 const komento = require( "komento" );
 const protype = require( "protype" );
+const wichevr = require( "wichevr" );
+const wichis = require( "wichis" );
+
+//: @server:
+const lire = require( "lire" );
+//: @end-server
 
 /*;
 	@option:
@@ -81,94 +89,81 @@ const ribosome = function ribosome( expression, option ){
 	/*;
 		@meta-configuration:
 			{
-				"expression:required": "function",
+				"expression:required": [
+					"function",
+					"string"
+				],
 				"option": "object"
 			}
 		@end-meta-configuration
 	*/
 
-	let name = option.name || "method";
-
-	if( !protype( expression, FUNCTION ) ){
+	if( falzy( expression ) || !protype( expression, FUNCTION + STRING ) ){
 		throw new Error( "invalid expression" );
 	}
 
-	let parameter = option.parameter || [ ];
-	if( !doubt( parameter ).ARRAY ){
+	let parameter = wichis( option.parameter, [ ] );
+	if( !doubt( parameter, ARRAY ) ){
 		throw new Error( "invalid parameter" );
 	}
 
-	expression = komento( expression, option.data );
+	expression = komento( expression, wichis( option.data, { } ) );
 
-	let dependency = option.dependency || [ ];
-	dependency = dependency.map( function onEachDependency( need ){
+	let dependency = wichis( option.dependency, [ ] );
+
+	dependency = dependency.map( function onEachDependency( dependency ){
 		if( asea.client ){
-			if( !protype( window[ need ], UNDEFINED ) || window[ need ] === null ){
-				let error = `dependency ${ need } not defined`;
-
-				throw new Error( error );
+			if( falzy( window[ dependency ] ) ){
+				throw new Error( `dependency ${ dependency } not loaded` );
 			}
 
-			return `${ need };`;
+			return `${ dependency };`;
 
 		}else if( asea.server ){
-			try{
-				let name = need.split( "@" )[ 0 ];
-				let track = need.split( "@" )[ 1 ];
+			let [ name, track ] = dependency.split( "@" );
 
-				fs.accessSync( track );
+			if( truly( name ) && truly( track ) && kept( track, true ) ){
+				return `
+					( function ( ){
+						var _${ name } = null;
 
-				return komento( function template( ){
-					/*!
-						( function ( ){
-							{{{module}}}
+						try{
+							_${ name } = ( ${ lire( track, true ) } );
+						}catch( error ){
+							throw new Error( "cannot load module, " + error.stack );
+						}
 
-							if( typeof global == "object" ){
-								global.{{name}} = {{name}};
-							}
+						if( typeof global == "object" && !global.${ name } ){
+							global.${ name } = ( typeof ${ name } != "undefined" )? ${ name } : _${ name };
+						}
 
-							if( typeof window == "object" ){
-								window.{{name}} = {{name}};
-							}
-						} )( );
-					*/
-				}, {
-					"module": fs.readFileSync( track, "utf8" ),
-					"name": name
-				} );
+						if( typeof window == "object" ){
+							window.${ name } = ( typeof ${ name } != "undefined" )? ${ name } : _${ name };
+						}
+					} )( );
+				`;
 
-			}catch( error ){
-				error = `dependency file ${ need } does not exists, ${ error.message }`;
-
-				throw new Error( error );
+			}else{
+				throw new Error( `cannot load dependency file ${ track } of ${ name }` );
 			}
 		}
 	} ).join( "\n" );
 
+	let name = wichevr( option.name, "method" );
+
 	try{
-		expression = komento( function template( ){
-			/*!
-				function {{name}}( {{parameter}} ){
-					{{{dependency}}}
+		let method = excursio( `
+			function ${ name }( ${ parameter.join( ", " ) } ){
+				${ dependency }
 
-					{{{expression}}}
-				}
-			*/
-		}, {
-			"name": name,
-			"parameter": parameter.join( ", " ),
-			"dependency": dependency,
-			"expression": expression
-		} );
-
-		let method = excursio( expression );
+				${ expression }
+			}
+		` );
 
 		return method;
 
 	}catch( error ){
-		error = `error encountered constructing function, ${ error.message }`;
-
-		throw new Error( error );
+		throw new Error( `error encountered constructing function, ${ error.stack }` );
 	}
 };
 

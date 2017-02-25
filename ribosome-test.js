@@ -2,4 +2,7 @@
 
 const ribosome = require( "./ribosome.js" );
 
-console.log( ribosome( "hello", { "name": "simple" } ) );
+console.log( ribosome( "return hello;", {
+	"name": "yeah",
+	"parameter": [ "hello" ]
+} )( "world" ) );
