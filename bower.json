@@ -1,6 +1,6 @@
 {
   "name": "ribosome",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Function factory.",
   "main": "ribosome.deploy.js",
   "support": "ribosome.support.js",
@@ -22,6 +22,9 @@
     "test",
     "tests"
   ],
+  "resolutions": {
+    "wichevr": "^0.1.0"
+  },
   "dependencies": {
     "asea": "^0.10.0",
     "doubt": "^0.17.0",
@@ -29,11 +32,8 @@
     "falzy": "^0.13.0",
     "komento": "^0.15.0",
     "protype": "^0.17.0",
+    "truly": "^0.13.0",
     "wichevr": "^0.1.0",
     "wichis": "^0.1.0"
-  },
-  "resolutions": {
-    "wichis": "^0.1.0",
-    "wichevr": "^0.1.0"
   }
 }

@@ -4,9 +4,11 @@ asea \
 doubt \
 excursio \
 falzy \
+kept \
 komento \
 lire \
 protype \
+truly \
 wichevr \
 wichis \
 --save && \
@@ -31,6 +33,7 @@ excursio \
 falzy \
 komento \
 protype \
+truly \
 wichevr \
 wichis \
 --save \

@@ -53,9 +53,11 @@
 			"asea": "asea",
 			"doubt": "doubt",
 			"excursio": "excursio",
+			"kept": "kept",
 			"komento": "komento",
 			"lire": "lire",
 			"protype": "protype",
+			"truly": "truly",
 			"wichevr": "wichevr",
 			"wichis": "wichis"
 		}
@@ -68,10 +70,12 @@ const excursio = require( "excursio" );
 const falzy = require( "falzy" );
 const komento = require( "komento" );
 const protype = require( "protype" );
+const truly = require( "truly" );
 const wichevr = require( "wichevr" );
 const wichis = require( "wichis" );
 
 //: @server:
+const kept = require( "kept" );
 const lire = require( "lire" );
 //: @end-server
 

@@ -53,9 +53,11 @@
 			"asea": "asea",
 			"doubt": "doubt",
 			"excursio": "excursio",
+			"kept": "kept",
 			"komento": "komento",
 			"lire": "lire",
 			"protype": "protype",
+			"truly": "truly",
 			"wichevr": "wichevr",
 			"wichis": "wichis"
 		}
@@ -74,6 +76,7 @@ var excursio = require("excursio");
 var falzy = require("falzy");
 var komento = require("komento");
 var protype = require("protype");
+var truly = require("truly");
 var wichevr = require("wichevr");
 var wichis = require("wichis");
 
