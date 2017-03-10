@@ -1,6 +1,6 @@
 {
   "name": "ribosome",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Function factory.",
   "main": "ribosome.js",
   "support": "ribosome.support.js",
@@ -29,18 +29,18 @@
   },
   "homepage": "https://github.com/volkovasystems/ribosome#readme",
   "dependencies": {
-    "asea": "^0.10.0",
+    "asea": "^0.11.0",
     "babel-runtime": "^6.23.0",
-    "doubt": "^0.17.0",
-    "excursio": "^0.3.0",
-    "falzy": "^0.13.0",
+    "doubt": "^0.21.0",
+    "excursio": "^0.4.0",
+    "falzy": "^0.15.0",
     "kept": "^0.12.0",
-    "komento": "^0.15.0",
+    "komento": "^0.17.0",
     "lire": "^0.6.0",
-    "protype": "^0.17.0",
-    "truly": "^0.13.0",
-    "wichevr": "^0.1.0",
-    "wichis": "^0.1.0"
+    "protype": "^0.19.0",
+    "truly": "^0.15.0",
+    "wichevr": "^0.4.0",
+    "wichis": "^0.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
@@ -53,7 +53,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "source-map-loader": "^0.1.6",
+    "source-map-loader": "^0.2.0",
     "webpack": "^2.2.1"
   }
 }
