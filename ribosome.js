@@ -79,6 +79,10 @@ const kept = require( "kept" );
 const lire = require( "lire" );
 //: @end-server
 
+const NEWLINE_PATTERN = /\n*|\r*/gm;
+const SINGLE_QUOTE_PATTERN = /\'/gm;
+const SOURCE_MAPPING_URL_PATTERN = /\/\/\#\s*sourceMappingURL\=.+?$/igm;
+
 /*;
 	@option:
 		{
@@ -127,12 +131,19 @@ const ribosome = function ribosome( expression, option ){
 			let [ name, track ] = dependency.split( "@" );
 
 			if( truly( name ) && truly( track ) && kept( track, true ) ){
+				let module = lire( track, true ).replace( NEWLINE_PATTERN, "" )
+					.replace( SINGLE_QUOTE_PATTERN, "\\'" );
+
+				if( SOURCE_MAPPING_URL_PATTERN.test( module ) ){
+					module = module.replace( SOURCE_MAPPING_URL_PATTERN, "" );
+				}
+
 				return `
 					( function ( ){
 						var _${ name } = null;
 
 						try{
-							_${ name } = ( ${ lire( track, true ) } );
+							_${ name } = eval( '${ module }' );
 						}catch( error ){
 							throw new Error( "cannot load module, " + error.stack );
 						}

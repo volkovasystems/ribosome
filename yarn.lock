@@ -21,8 +21,8 @@ ajv-keywords@^1.1.1:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
 ajv@^4.7.0, ajv@^4.9.1:
-  version "4.11.4"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.4.tgz#ebf3a55d4b132ea60ff5847ae85d2ef069960b45"
+  version "4.11.5"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.5.tgz#b6ee74657b993a01dce44b7944d56f485828d5bd"
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
@@ -998,6 +998,18 @@ clazof@^0.14.0:
     stringe "^0.1.0"
     wauker "^0.3.0"
 
+clazof@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/clazof/-/clazof-0.15.0.tgz#1c6295174f840e5beafef44afc874b9fe52a351e"
+  dependencies:
+    babel-runtime "^6.23.0"
+    falzy "^0.15.0"
+    portel "^0.1.0"
+    protype "^0.19.0"
+    raze "^0.22.0"
+    stringe "^0.1.0"
+    wauker "^0.3.0"
+
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -1481,6 +1493,14 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.3:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
+esprima@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-1.0.0.tgz#5f0571b94a87d5199b1f302a7e27eb185e466850"
+
+esprima@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
+
 esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
@@ -1495,14 +1515,16 @@ evp_bytestokey@^1.0.0:
   dependencies:
     create-hash "^1.1.1"
 
-excursio@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/excursio/-/excursio-0.4.0.tgz#ba2277e439b3afdac6052fa184df90735c5917fe"
+excursio@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/excursio/-/excursio-0.5.0.tgz#10d2b72458d1da613307b59b06a0dfc4e20f5643"
   dependencies:
     babel-runtime "^6.23.0"
+    clazof "^0.15.0"
     depher "^0.19.0"
     falzy "^0.15.0"
     komento "^0.17.0"
+    madhatter "^0.5.0"
     protype "^0.19.0"
     rmor "^0.0.0"
     wichis "^0.7.0"
@@ -2165,8 +2187,8 @@ is-binary-path@^1.0.0:
     binary-extensions "^1.0.0"
 
 is-buffer@^1.0.2:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.4.tgz#cfc86ccd5dc5a52fa80489111c6920c457e2d98b"
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
 
 is-builtin-module@^1.0.0:
   version "1.0.0"
@@ -2703,6 +2725,17 @@ lru-cache@2:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
 
+madhatter@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/madhatter/-/madhatter-0.5.0.tgz#2f24b82d59ef951c42525d3383b483d1c7d7715e"
+  dependencies:
+    asea "^0.11.0"
+    babel-runtime "^6.23.0"
+    esprima "^3.1.3"
+    lire "^0.6.0"
+    syntax-error "^1.3.0"
+    unused "^0.2.2"
+
 map-cache@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
@@ -2963,6 +2996,13 @@ optfor@^0.16.0:
     optall "^0.11.0"
     protype "^0.17.0"
     zelf "^0.8.0"
+
+optimist@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.0.tgz#69424826f3405f79f142e6fc3d9ae58d4dbb9200"
+  dependencies:
+    minimist "~0.0.1"
+    wordwrap "~0.0.2"
 
 optimist@^0.6.1:
   version "0.6.1"
@@ -3825,6 +3865,12 @@ supports-color@^3.1.0:
   dependencies:
     has-flag "^1.0.0"
 
+syntax-error@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/syntax-error/-/syntax-error-1.3.0.tgz#1ed9266c4d40be75dc55bf9bb1cb77062bb96ca1"
+  dependencies:
+    acorn "^4.0.3"
+
 tapable@^0.2.5, tapable@~0.2.5:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.2.6.tgz#206be8e188860b514425375e6f1ae89bfb01fd8d"
@@ -3994,8 +4040,8 @@ u200b@^0.15.0:
     truly "^0.13.0"
 
 uglify-js@^2.6, uglify-js@^2.7.5:
-  version "2.8.11"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.11.tgz#11a51c43d810b47bc00aee4d512cb3947ddd1ac4"
+  version "2.8.12"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.12.tgz#8a50f5d482243650b7108f6080aa3a6afe2a6c55"
   dependencies:
     source-map "~0.5.1"
     uglify-to-browserify "~1.0.0"
@@ -4016,6 +4062,13 @@ unc-path-regex@^0.1.0:
 unique-stream@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unique-stream/-/unique-stream-1.0.0.tgz#d59a4a75427447d9aa6c91e70263f8d26a4b104b"
+
+unused@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/unused/-/unused-0.2.2.tgz#ce12480489f3dd93d10f1b7ac83cc0d58423eaa0"
+  dependencies:
+    esprima "1.0.0"
+    optimist "0.6.0"
 
 url@^0.11.0:
   version "0.11.0"

@@ -76,16 +76,20 @@ var wichis = require("wichis");
 
 
 
+var NEWLINE_PATTERN = /\n*|\r*/gm;
+var SINGLE_QUOTE_PATTERN = /\'/gm;
+var SOURCE_MAPPING_URL_PATTERN = /\/\/\#\s*sourceMappingURL\=.+?$/igm;
+
 /*;
-                                	@option:
-                                		{
-                                			"name": "string",
-                                			"parameter": "[string]",
-                                			"dependency": "[string]",
-                                			"data": "object"
-                                		}
-                                	@end-option
-                                */
+                                                                       	@option:
+                                                                       		{
+                                                                       			"name": "string",
+                                                                       			"parameter": "[string]",
+                                                                       			"dependency": "[string]",
+                                                                       			"data": "object"
+                                                                       		}
+                                                                       	@end-option
+                                                                       */
 var ribosome = function ribosome(expression, option) {
 	/*;
                                                       	@meta-configuration:
@@ -124,12 +128,19 @@ var ribosome = function ribosome(expression, option) {
 			dependency.split("@"),_dependency$split2 = (0, _slicedToArray3.default)(_dependency$split, 2),_name = _dependency$split2[0],track = _dependency$split2[1];
 
 			if (truly(_name) && truly(track) && kept(track, true)) {
+				var _module = lire(track, true).replace(NEWLINE_PATTERN, "").
+				replace(SINGLE_QUOTE_PATTERN, "\\'");
+
+				if (SOURCE_MAPPING_URL_PATTERN.test(_module)) {
+					_module = _module.replace(SOURCE_MAPPING_URL_PATTERN, "");
+				}
+
 				return "\n\t\t\t\t\t( function ( ){\n\t\t\t\t\t\tvar _" +
 
 				_name + " = null;\n\n\t\t\t\t\t\ttry{\n\t\t\t\t\t\t\t_" +
 
 
-				_name + " = ( " + lire(track, true) + " );\n\t\t\t\t\t\t}catch( error ){\n\t\t\t\t\t\t\tthrow new Error( \"cannot load module, \" + error.stack );\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tif( typeof global == \"object\" && !global." +
+				_name + " = eval( '" + _module + "' );\n\t\t\t\t\t\t}catch( error ){\n\t\t\t\t\t\t\tthrow new Error( \"cannot load module, \" + error.stack );\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\tif( typeof global == \"object\" && !global." +
 
 
 

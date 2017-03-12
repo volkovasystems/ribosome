@@ -1,6 +1,6 @@
 {
   "name": "ribosome",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Function factory.",
   "main": "ribosome.js",
   "support": "ribosome.support.js",
@@ -32,7 +32,7 @@
     "asea": "^0.11.0",
     "babel-runtime": "^6.23.0",
     "doubt": "^0.21.0",
-    "excursio": "^0.4.0",
+    "excursio": "^0.5.0",
     "falzy": "^0.15.0",
     "kept": "^0.12.0",
     "komento": "^0.17.0",
