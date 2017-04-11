@@ -1,6 +1,6 @@
 {
   "name": "ribosome",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Function factory.",
   "main": "ribosome.deploy.js",
   "support": "ribosome.support.js",
@@ -25,9 +25,9 @@
   "dependencies": {
     "asea": "^0.13.0",
     "doubt": "^0.24.0",
-    "excursio": "^0.7.0",
+    "excursio": "^0.8.0",
     "falzy": "^0.17.0",
-    "komento": "^0.20.0",
+    "komento": "^0.22.0",
     "protype": "^0.21.0",
     "truly": "^0.17.0",
     "wichevr": "^0.7.0",
