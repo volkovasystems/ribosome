@@ -1,8 +1,11 @@
 "use strict";
 
+const assert = require( "assert" );
 const ribosome = require( "./ribosome.js" );
 
-console.log( ribosome( "return hello;", {
+assert.equal( ribosome( "return hello;", {
 	"name": "yeah",
 	"parameter": [ "hello" ]
-} )( "world" ) );
+} )( "world" ), "world" );
+
+console.log( "ok" );
